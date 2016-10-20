@@ -1,9 +1,11 @@
 #include "shaders.h"
 #include "texture.h"
+#include "transformations.h"
 enum Names
 {
 	toShaders = 0,
 	toTexture,
+	toTransform,
 };
 
 void stratProcess(int type)
@@ -16,6 +18,9 @@ void stratProcess(int type)
 	case toTexture:
 		texture();
 		break;
+	case toTransform:
+		transform();
+		break;
 	default:
 		break;
 	}
@@ -23,6 +28,6 @@ void stratProcess(int type)
 
 int main()
 {
-	stratProcess(toTexture);
+	stratProcess(toTransform);
 	return 0;
 }

@@ -39,7 +39,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\newGit\openglDemo\openglLIB\SOIL\src;D:\newGit\openglDemo\openglLIB\glfw-3.2.1\include;D:\newGit\openglDemo\openglLIB\glew-2.0.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\newGit\openglDemo\openglLIB;D:\newGit\openglDemo\openglLIB\SOIL\src;D:\newGit\openglDemo\openglLIB\glfw-3.2.1\include;D:\newGit\openglDemo\openglLIB\glew-2.0.0\include;$(IncludePath)</IncludePath>
     <LibraryPath>D:\newGit\openglDemo\openglLIB\glfw-3.2.1\lib_v13;D:\newGit\openglDemo\openglLIB\SOIL\lib;D:\newGit\openglDemo\openglLIB\glew-2.0.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -72,6 +72,7 @@
     <ClInclude Include="shader.h" />
     <ClInclude Include="shaders.h" />
     <ClInclude Include="texture.h" />
+    <ClInclude Include="transformations.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

@@ -12,6 +12,11 @@
 **********************************************************/
 #include "shader.h"
 
+float filterFactor = 0.2f;
+
+// Function prototypes
+void key_callback2(GLFWwindow* window, int key, int scancode, int action, int mode);
+
 int texture()
 {
 	// Init GLFW
@@ -27,7 +32,7 @@ int texture()
 	glfwMakeContextCurrent(window);
 
 	// Set the required callback functions
-	glfwSetKeyCallback(window, key_callback);
+	glfwSetKeyCallback(window, key_callback2);
 
 	// Set this to true so GLEW knows to use a modern approach to retrieving function pointers and extensions
 	glewExperimental = GL_TRUE;
@@ -45,11 +50,11 @@ int texture()
 	glBindTexture(GL_TEXTURE_2D, textureImg);
 
 	// Set the texture wrapping parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// Set texture wrapping to GL_REPEAT (usually basic wrapping method)
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);	// Set texture wrapping to GL_REPEAT (usually basic wrapping method)
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	// Set texture filtering parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
 	int imgWidth, imgHeight;
 	UCHAR *img = SOIL_load_image("texImg\\container.jpg", &imgWidth, &imgHeight, 0, SOIL_LOAD_RGB);
@@ -64,11 +69,11 @@ int texture()
 	glGenTextures(1, &textureImg2);
 	glBindTexture(GL_TEXTURE_2D, textureImg2);
 	// Set our texture parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
 	// Set texture filtering
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	// Load, create texture and generate mipmaps
 	img = SOIL_load_image("texImg\\awesomeface.png", &imgWidth, &imgHeight, 0, SOIL_LOAD_RGB);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, imgWidth, imgWidth, 0, GL_RGB, GL_UNSIGNED_BYTE, img);
@@ -80,10 +85,10 @@ int texture()
 
 	GLfloat vertices[] = {
 		//     ---- 位置 ----       ---- 颜色 ----     - 纹理坐标 -
-		0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f,   // 右上
-		0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f,   // 右下
+		0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 0.55f, 0.55f,   // 右上
+		0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 0.55f, 0.0f,   // 右下
 		-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,   // 左下
-		-0.5f, 0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f    // 左上
+		-0.5f, 0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.55f    // 左上
 	};
 
 	//顶点索引数组
@@ -143,6 +148,8 @@ int texture()
 		glBindTexture(GL_TEXTURE_2D, textureImg2);
 		glUniform1i(glGetUniformLocation(testTexProgram.getProgramID(), "ourTexture2"), 1);
 
+		glUniform1f(glGetUniformLocation(testTexProgram.getProgramID(), "filterRatio"), filterFactor);
+
 		// Draw container
 		glBindVertexArray(VAO);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -161,7 +168,29 @@ int texture()
 
 	return 0;
 }
-
+// Is called whenever a key is pressed/released via GLFW
+void key_callback2(GLFWwindow* window, int key, int scancode, int action, int mode)
+{
+	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+		glfwSetWindowShouldClose(window, GL_TRUE);
+	else if (key == GLFW_KEY_UP && action == GLFW_PRESS)
+	{
+		filterFactor += 0.1f;
+		if (filterFactor > 1.0f)
+		{
+			filterFactor = 1.0f;
+		}
+	}
+	else if (key == GLFW_KEY_DOWN && action == GLFW_PRESS)
+	{
+		filterFactor -= 0.1f;
+		if (filterFactor < 0.0f)
+		{
+			filterFactor = 0.0f;
+		}
+	}
+	
+}
 
 
 #endif // !TEXTURE_H
