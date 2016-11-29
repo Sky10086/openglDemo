@@ -1,8 +1,9 @@
-#version 330 core
-in vec3 ourColor;
-in vec2 TexCoord;
+//#version 330 core
+precision mediump float;
+varying vec3 ourColor;
+varying vec2 TexCoord;
 
-out vec4 color;
+//varying vec4 color;
 
 uniform sampler2D ourTexture1;
 uniform sampler2D ourTexture2;
@@ -10,5 +11,6 @@ uniform float filterRatio;
 
 void main()
 {
-    color = mix(texture(ourTexture1, TexCoord), texture(ourTexture2, TexCoord), filterRatio);
+  
+    gl_FragColor = vec4(mix(texture2D(ourTexture1, TexCoord), vec4(mix(texture2D(ourTexture2, TexCoord),vec4(ourColor,1.0),0.5)),filterRatio));
 }

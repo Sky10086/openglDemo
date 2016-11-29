@@ -1,11 +1,15 @@
 #include "shaders.h"
 #include "texture.h"
 #include "transformations.h"
+#include "CoordinateSystems.h"
 enum Names
 {
 	toShaders = 0,
 	toTexture,
 	toTransform,
+	toCoordinateSystems,
+	toCoordinateSystems3D,
+	toCoordinateSystems3DPro,
 };
 
 void stratProcess(int type)
@@ -21,6 +25,15 @@ void stratProcess(int type)
 	case toTransform:
 		transform();
 		break;
+	case toCoordinateSystems:
+		CoordinateSystems();
+		break;
+	case toCoordinateSystems3D:
+		CoordinateSystems2();
+		break;
+	case toCoordinateSystems3DPro:
+		CoordinateSystems3();
+		break;
 	default:
 		break;
 	}
@@ -28,6 +41,6 @@ void stratProcess(int type)
 
 int main()
 {
-	stratProcess(toTransform);
+	stratProcess(toCoordinateSystems3DPro);
 	return 0;
 }

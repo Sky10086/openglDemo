@@ -83,10 +83,10 @@ int transform()
 
 	GLfloat vertices[] = {
 		//     ---- 位置 ----       ---- 颜色 ----     - 纹理坐标 -
-		0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f,   // 右上
-		0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f,   // 右下
-		-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,   // 左下
-		-0.5f, 0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f    // 左上
+		1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f,   // 右上
+		1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f,   // 右下
+		-1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,   // 左下
+		-1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f    // 左上
 	};
 
 	//顶点索引数组
@@ -108,15 +108,19 @@ int transform()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(index), index, GL_STATIC_DRAW);
 
+	unsigned int attrId = glGetAttribLocation(testTexProgram.getProgramID(), "position");
+	attrId = glGetAttribLocation(testTexProgram.getProgramID(), "color");//若在shader中定义了，但是没有使用，得到的id是未定义的，所以不要有多余的东西
+	attrId = glGetAttribLocation(testTexProgram.getProgramID(), "texCoord");
+
 	// Position attribute
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)0);
+	glVertexAttribPointer(glGetAttribLocation(testTexProgram.getProgramID(),"position"), 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)0);
 	glEnableVertexAttribArray(0);
 	// Color attribute
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+	glVertexAttribPointer(glGetAttribLocation(testTexProgram.getProgramID(), "color"), 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
 	glEnableVertexAttribArray(1);
 
 	//纹理坐标 texCoord
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
+	glVertexAttribPointer(glGetAttribLocation(testTexProgram.getProgramID(), "texCoord"), 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
 	glEnableVertexAttribArray(2);
 
 	glBindVertexArray(0); // Unbind VAO
@@ -153,7 +157,7 @@ int transform()
 		glUniform1f(glGetUniformLocation(testTexProgram.getProgramID(), "filterRatio"), 0.2f);
 		glm::mat4 trans;
 		trans = glm::translate(trans, glm::vec3(0.5f, -0.5f, 0.0f));
-		trans = glm::rotate(trans, glm::radians((GLfloat)glfwGetTime()*50.f), glm::vec3(0.0f, 0.0f, 1.0f));
+		trans = glm::rotate(trans, glm::radians((GLfloat)glfwGetTime()*50.f), glm::vec3(0.0f, 0.0f, 1.1f));
 		
 		
 		//传入变换矩阵
@@ -166,7 +170,7 @@ int transform()
 
 		trans = glm::mat4();
 		
-		//trans = glm::scale(trans, glm::vec3(sin((GLfloat)glfwGetTime()), sin((GLfloat)glfwGetTime()), sin((GLfloat)glfwGetTime())));
+		trans = glm::scale(trans, glm::vec3(sin((GLfloat)glfwGetTime()), sin((GLfloat)glfwGetTime()), sin((GLfloat)glfwGetTime())));
 		trans = glm::translate(trans, glm::vec3(-0.5f, 0.5f, 0.0f));
 		glUniformMatrix4fv(glGetUniformLocation(testTexProgram.getProgramID(), "transform"), 1, GL_FALSE, glm::value_ptr(trans));
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
