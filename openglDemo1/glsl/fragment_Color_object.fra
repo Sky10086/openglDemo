@@ -1,0 +1,11 @@
+//#version 330 core
+precision mediump float;
+
+uniform vec3 lightColor;
+uniform vec3 objectColor;
+
+void main()
+{
+    //gl_FragColor = vec4(mix(texture2D(ourTexture1, TexCoord), vec4(mix(texture2D(ourTexture2, TexCoord),vec4(ourColor,1.0),0.5)),filterRatio));
+	gl_FragColor = vec4(lightColor*objectColor,1.0);
+}

@@ -16,6 +16,9 @@
 //SOIL
 #include <SOIL.h>
 
+//camera.h
+#include "CameraDefine.h"
+
 #define UCHAR unsigned char
 
 
@@ -135,4 +138,9 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	if (key == GLFW_KEY_ENTER && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GL_TRUE);
 }
+
+
+
+
+
 #endif

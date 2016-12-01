@@ -68,10 +68,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraDefine.h" />
+    <ClInclude Include="Color.h" />
     <ClInclude Include="CoordinateSystems.h" />
     <ClInclude Include="helpCompute.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="shaders.h" />
+    <ClInclude Include="testAnswer.h" />
     <ClInclude Include="texture.h" />
     <ClInclude Include="transformations.h" />
   </ItemGroup>

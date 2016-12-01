@@ -2,6 +2,9 @@
 #include "texture.h"
 #include "transformations.h"
 #include "CoordinateSystems.h"
+#include "Camera.h"
+#include "Color.h"
+//#include "testAnswer.h"
 enum Names
 {
 	toShaders = 0,
@@ -10,6 +13,9 @@ enum Names
 	toCoordinateSystems,
 	toCoordinateSystems3D,
 	toCoordinateSystems3DPro,
+	toCamera,
+	toCameraPro,
+	toColor,
 };
 
 void stratProcess(int type)
@@ -34,6 +40,15 @@ void stratProcess(int type)
 	case toCoordinateSystems3DPro:
 		CoordinateSystems3();
 		break;
+	case toCamera:
+		testcamera();
+		break;
+	case toCameraPro:
+		cameraPro();
+		break;
+	case toColor:
+		color();
+		break;
 	default:
 		break;
 	}
@@ -41,6 +56,18 @@ void stratProcess(int type)
 
 int main()
 {
-	stratProcess(toCoordinateSystems3DPro);
+	stratProcess(toColor);
+	//testAnswer();
 	return 0;
 }
+
+/*****************************************************************************
+* @function name : 
+* @funcIntroduce :这个demo框架现在已经不再适用接下来的学习了，不能复写同名的函数、全局变量满天飞，重定义错误频繁
+所以需要对此框架重构，
+* @inparam : 
+* @outparam : 
+* @author : xiaosheng
+* @date : 2016/12/1 21:11
+* @last change : 
+*****************************************************************************/
