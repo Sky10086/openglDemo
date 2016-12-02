@@ -72,6 +72,8 @@
     <ClInclude Include="CameraDefine.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="CoordinateSystems.h" />
+    <ClInclude Include="GLTestWork.h" />
+    <ClInclude Include="GLWork.h" />
     <ClInclude Include="helpCompute.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="shaders.h" />

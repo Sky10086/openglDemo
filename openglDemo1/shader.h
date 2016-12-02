@@ -26,9 +26,12 @@ class Shader
 {
 public:
 	Shader(const GLchar* vertexPath, const GLchar* fragmentPath);
+	//Shader(){};
 	~Shader();
 	void Use();
 	GLuint getProgramID();
+	GLuint getUnifomLocation(GLchar *name);
+	GLuint getAttributeLocation(GLchar *name);
 
 
 private:
@@ -123,6 +126,16 @@ void Shader::Use()
 GLuint Shader::getProgramID()
 {
 	return Program;
+}
+
+GLuint Shader::getUnifomLocation(GLchar *name)
+{
+	return glGetUniformLocation(Program, name);
+}
+
+GLuint Shader::getAttributeLocation(GLchar *name)
+{
+	return glGetAttribLocation(Program, name);
 }
 
 

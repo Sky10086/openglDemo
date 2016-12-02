@@ -45,6 +45,12 @@
     <ClInclude Include="testAnswer.h">
       <Filter>源文件</Filter>
     </ClInclude>
+    <ClInclude Include="GLWork.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GLTestWork.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
