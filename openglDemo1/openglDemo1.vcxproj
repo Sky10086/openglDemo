@@ -39,8 +39,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\newGit\openglDemo\openglLIB;D:\newGit\openglDemo\openglLIB\SOIL\src;D:\newGit\openglDemo\openglLIB\glfw-3.2.1\include;D:\newGit\openglDemo\openglLIB\glew-2.0.0\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\newGit\openglDemo\openglLIB\glfw-3.2.1\lib_v13;D:\newGit\openglDemo\openglLIB\SOIL\lib;D:\newGit\openglDemo\openglLIB\glew-2.0.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>G:\VisualStudio2013Projects\openglDemo1\openglLIB;G:\VisualStudio2013Projects\openglDemo1\openglLIB\SOIL\src;G:\VisualStudio2013Projects\openglDemo1\openglLIB\glfw-3.2.1\include;G:\VisualStudio2013Projects\openglDemo1\openglLIB\glew-2.0.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>G:\VisualStudio2013Projects\openglDemo1\openglLIB\glfw-3.2.1\lib_v13;G:\VisualStudio2013Projects\openglDemo1\openglLIB\SOIL\lib;G:\VisualStudio2013Projects\openglDemo1\openglLIB\glew-2.0.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -74,11 +74,12 @@
     <ClInclude Include="CoordinateSystems.h" />
     <ClInclude Include="GLTestWork.h" />
     <ClInclude Include="GLWork.h" />
+    <ClInclude Include="GLWorkFactory.h" />
     <ClInclude Include="helpCompute.h" />
     <ClInclude Include="shader.h" />
-    <ClInclude Include="shaders.h" />
+    <ClInclude Include="GLShaderWork.h" />
     <ClInclude Include="testAnswer.h" />
-    <ClInclude Include="texture.h" />
+    <ClInclude Include="GLTextureWork.h" />
     <ClInclude Include="transformations.h" />
   </ItemGroup>
   <ItemGroup>

@@ -1031,7 +1031,7 @@ typedef void (* GLFWscrollfun)(GLFWwindow*,double,double);
  *
  *  @ingroup input
  */
-typedef void (* GLFWkeyfun)(GLFWwindow*,int,int,int,int);
+typedef void (*GLFWkeyfun)(GLFWwindow*,int,int,int,int);
 
 /*! @brief The function signature for Unicode character callbacks.
  *

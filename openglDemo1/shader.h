@@ -8,13 +8,13 @@
 
 // GLEW
 #define GLEW_STATIC
-#include <GL/glew.h>
+#include <../openglLIB/glew-2.0.0/include/GL/glew.h>
 
 // GLFW
-#include <GLFW/glfw3.h>
+#include <../openglLIB/glfw-3.2.1/include/GLFW/glfw3.h>
 
 //SOIL
-#include <SOIL.h>
+#include <../openglLIB/SOIL/src/SOIL.h>
 
 //camera.h
 #include "CameraDefine.h"
@@ -26,7 +26,7 @@ class Shader
 {
 public:
 	Shader(const GLchar* vertexPath, const GLchar* fragmentPath);
-	//Shader(){};
+	Shader(){};
 	~Shader();
 	void Use();
 	GLuint getProgramID();
@@ -40,6 +40,7 @@ private:
 
 Shader::Shader(const GLchar* vertexPath, const GLchar* fragmentPath)
 {
+
 	// 1. Retrieve the vertex/fragment source code from filePath
 	std::string vertexCode;
 	std::string fragmentCode;
@@ -140,17 +141,17 @@ GLuint Shader::getAttributeLocation(GLchar *name)
 
 
 // Function prototypes
-void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
+//void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
 
 // Window dimensions
 const GLuint WIDTH = 800, HEIGHT = 600;
 
 // Is called whenever a key is pressed/released via GLFW
-void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
-{
-	if (key == GLFW_KEY_ENTER && action == GLFW_PRESS)
-		glfwSetWindowShouldClose(window, GL_TRUE);
-}
+//void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
+//{
+//	if (key == GLFW_KEY_ENTER && action == GLFW_PRESS)
+//		glfwSetWindowShouldClose(window, GL_TRUE);
+//}
 
 
 

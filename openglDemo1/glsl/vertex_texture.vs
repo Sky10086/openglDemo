@@ -1,4 +1,4 @@
-//#version 330 core
+#version 330 core
 attribute vec3 position;
 attribute vec3 color;
 attribute vec2 texCoord;

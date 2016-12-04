@@ -54,15 +54,13 @@
 //	}
 //}
 
-#include "GLTestWork.h"
-
+#include "GLWorkFactory.h"
 int main()
 {
 	//stratProcess(toColor);
 	//testAnswer();
-	GLTestWork *testWork = new GLTestWork("glsl//vertex_Color_light.vs", "glsl//fragment_Color_light.fra", glm::vec3(0.0f, 0.0f, 3.0f));
-	testWork->initWork();
-	testWork->onDraw();
+	GLWork *curWork = workCreater(testWork);
+	curWork->onDraw(firstDraw);
 	return 0;
 }
 

@@ -3,9 +3,17 @@
 #include "shader.h"
 #include "CameraDefine.h"
 // GLM Mathematics
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+#include <../openglLIB/glm/glm.hpp>
+#include <../openglLIB/glm/gtc/matrix_transform.hpp>
+#include <../openglLIB/glm/gtc/type_ptr.hpp>
+
+enum drawIndex
+{
+	firstDraw = 0,
+	secondDraw,
+	thirdDraw,
+	forthDraw
+};
 
 class GLWork
 {
@@ -13,31 +21,32 @@ public:
 	GLWork(const GLchar* vertexPath, const GLchar* fragmentPath, glm::vec3 cameraPos);
 	~GLWork();
 	Shader getProgram();
-	Camera getCamera();
 	GLFWwindow* getWindow();
-	virtual void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);//键盘回调
-	virtual void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);//鼠标滚轮回调
-	virtual void mouse_callback(GLFWwindow* window, double xpos, double ypos);//鼠标回调
+	//virtual void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);//键盘回调
+	//virtual void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);//鼠标滚轮回调
+	//virtual void mouse_callback(GLFWwindow* window, double xpos, double ypos);//鼠标回调
 	virtual void Do_Movement(float deltaTime);//移动处理
 	virtual void initWork();//初始化工作环境，创建窗口进行设置等
-	virtual void onDraw();//画帧
-
+	virtual void onDraw(int workIndex);//画帧,一个章节有时有好几次实践，使用index来确定画哪一个实践
 private:
 	Shader mProgram;
-	Camera mCamera;
-	bool mKey_Map[1024];
-	GLfloat lastX ;
-	GLfloat lastY ;
-	bool firstMouse;
 	GLFWwindow* mWindows;
 };
 
-GLWork::GLWork(const GLchar* vertexPath, const GLchar* fragmentPath,glm::vec3 cameraPos) :mProgram(vertexPath, fragmentPath)
+static bool mKey_Map[1024];
+static GLfloat lastX;
+static GLfloat lastY;
+static bool firstMouse;
+static Camera mCamera;
+
+GLWork::GLWork(const GLchar* vertexPath, const GLchar* fragmentPath,glm::vec3 cameraPos)
 {
 	mCamera = Camera(cameraPos);
 	lastX = WIDTH / 2.0f;
 	lastY = HEIGHT / 2.0f;
 	firstMouse = true;
+	initWork();
+	mProgram = Shader(vertexPath, fragmentPath);
 }
 
 GLWork::~GLWork()
@@ -49,30 +58,27 @@ Shader GLWork::getProgram()
 	return this->mProgram;
 }
 
-Camera GLWork::getCamera()
-{
-	return this->mCamera;
-}
+
 
 GLFWwindow* GLWork::getWindow()
 {
 	return mWindows;
 }
 
-void GLWork::key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GL_TRUE);
 	if (key >= 0 && key < 1024)
 	{
 		if (action == GLFW_PRESS)
-			this->mKey_Map[key] = true;
+			mKey_Map[key] = true;
 		else if (action == GLFW_RELEASE)
-			this->mKey_Map[key] = false;
+			mKey_Map[key] = false;
 	}
 }
 
-void GLWork::mouse_callback(GLFWwindow* window, double xpos, double ypos)
+void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 {
 	if (firstMouse)
 	{
@@ -91,7 +97,7 @@ void GLWork::mouse_callback(GLFWwindow* window, double xpos, double ypos)
 
 }
 
-void GLWork::scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
 	mCamera.ProcessMouseScroll(yoffset);
 }
@@ -126,10 +132,11 @@ void GLWork::initWork()
 	/*这里给成员变量windows赋值*/
 	mWindows = window;
 
+	
 	// Set the required callback functions
-	glfwSetKeyCallback(window, &(key_callback));
-	glfwSetCursorPosCallback(window, &(this->mouse_callback));
-	glfwSetScrollCallback(window, &(this->scroll_callback));
+	glfwSetKeyCallback(window, key_callback);
+	glfwSetCursorPosCallback(window, mouse_callback);
+	glfwSetScrollCallback(window,scroll_callback);
 
 	// GLFW Options
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
@@ -146,7 +153,7 @@ void GLWork::initWork()
 	glEnable(GL_DEPTH_TEST);
 }
 
-void GLWork::onDraw()
+void GLWork::onDraw(int workIndex)
 {
 	std::cout << "默认的" << std::endl;
 }
