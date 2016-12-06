@@ -3,9 +3,9 @@
 #include "shader.h"
 #include "CameraDefine.h"
 // GLM Mathematics
-#include <../openglLIB/glm/glm.hpp>
-#include <../openglLIB/glm/gtc/matrix_transform.hpp>
-#include <../openglLIB/glm/gtc/type_ptr.hpp>
+#include "../openglLIB/glm/glm.hpp"
+#include "../openglLIB/glm/gtc/matrix_transform.hpp"
+#include "../openglLIB/glm/gtc/type_ptr.hpp"
 
 enum drawIndex
 {

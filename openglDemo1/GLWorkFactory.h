@@ -3,12 +3,16 @@
 #include "GLShaderWork.h"
 #include "GLTestWork.h"
 #include "GLTextureWork.h"
+#include "GLBaceLightWork.h"
+#include "GLMaterialsWork.h"
 
 enum Names
 {
 	testWork = 0,
 	shader,
 	texture,
+	baceLight,
+	materials,
 };
 
 
@@ -34,7 +38,18 @@ GLWork *workCreater(int name)
 		fragment = "glsl//fragment_texture.fra";
 		return new GLTextureWork(vertex, fragment, cameraPos);
 		break;
+	case baceLight:
+		vertex = "glsl//vertex_Color_light.vs";
+		fragment = "glsl//fragment_Color_light.fra";
+		return new GLBaceLightWork(vertex, fragment, cameraPos);
+		break;
+	case materials:
+		vertex = "glsl//vertex_Color_light.vs";
+		fragment = "glsl//fragment_Color_light.fra";
+		return new GLMaterialsWork(vertex, fragment, cameraPos);
+		break;
 	default:
+		return NULL;
 		break;
 	}
 	

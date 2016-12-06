@@ -54,6 +54,12 @@
     <ClInclude Include="GLTextureWork.h">
       <Filter>源文件</Filter>
     </ClInclude>
+    <ClInclude Include="GLBaceLightWork.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GLMaterialsWork.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

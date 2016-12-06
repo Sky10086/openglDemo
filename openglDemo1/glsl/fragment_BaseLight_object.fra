@@ -1,0 +1,46 @@
+#version 330 core
+precision mediump float;
+
+uniform vec3 lightColor;
+uniform vec3 objectColor;
+
+//光源的位置
+uniform vec3 lightPos;
+//观察者在世界空间的位置，即摄像机的位置
+uniform vec3 viewPos;
+
+//法向量
+varying vec3 Normal;
+//物体在世界空间的坐标
+varying vec3 FragPos;
+
+
+void main()
+{
+    //gl_FragColor = vec4(mix(texture2D(ourTexture1, TexCoord), vec4(mix(texture2D(ourTexture2, TexCoord),vec4(ourColor,1.0),0.5)),filterRatio));
+	
+	//计算环境环境光照影响
+	float ambientStrength = 0.3f;
+    vec3 ambient = ambientStrength * lightColor;
+	
+	//计算漫反射光照影响
+	vec3 norm = normalize(Normal);
+	vec3 lightDir = normalize(lightPos-FragPos);
+	float diff = max(dot(norm,lightDir),0.0);
+	vec3 diffLightColor = diff*lightColor;
+	
+	//计算镜面反射镜像，三个光照影响组成冯氏光照效果
+	//镜面强度
+	float specularStrength = 0.8f;
+	//计算反射坐标
+	vec3 viewDir = normalize(viewPos - FragPos);
+	vec3 reflectDir = reflect(-lightDir, norm);
+	//计算镜面亮度分量
+	float spec = pow(max(dot(viewDir,reflectDir),0.0),128);
+	vec3 specular = specularStrength * spec * lightColor;
+	
+	
+	//光照效果叠加为最后效果
+	gl_FragColor = vec4((ambient + diffLightColor+specular)*objectColor,1.0);
+	//gl_FragColor = vec4((specular)*objectColor,1.0);
+}

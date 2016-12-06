@@ -8,13 +8,12 @@
 
 // GLEW
 #define GLEW_STATIC
-#include <../openglLIB/glew-2.0.0/include/GL/glew.h>
-
+#include "../openglLIB/glew-2.0.0/include/GL/glew.h"
 // GLFW
-#include <../openglLIB/glfw-3.2.1/include/GLFW/glfw3.h>
+#include "../openglLIB/glfw-3.2.1/include/GLFW/glfw3.h"
 
 //SOIL
-#include <../openglLIB/SOIL/src/SOIL.h>
+#include "../openglLIB/SOIL/src/SOIL.h"
 
 //camera.h
 #include "CameraDefine.h"

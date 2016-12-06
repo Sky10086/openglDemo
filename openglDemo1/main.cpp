@@ -59,8 +59,8 @@ int main()
 {
 	//stratProcess(toColor);
 	//testAnswer();
-	GLWork *curWork = workCreater(testWork);
-	curWork->onDraw(firstDraw);
+	GLWork *curWork = workCreater(materials);
+	curWork->onDraw(thirdDraw);
 	return 0;
 }
 

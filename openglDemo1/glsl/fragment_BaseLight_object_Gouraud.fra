@@ -1,0 +1,21 @@
+#version 330 core
+precision mediump float;
+
+uniform vec3 lightColor;
+uniform vec3 objectColor;
+
+//光源的位置
+uniform vec3 lightPos;
+//观察者在世界空间的位置，即摄像机的位置
+uniform vec3 viewPos;
+
+varying vec3 Gouraud;
+
+void main()
+{
+    
+	
+	
+	//光照效果叠加为最后效果
+	gl_FragColor = vec4((Gouraud)*objectColor,1.0);
+}
