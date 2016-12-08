@@ -5,6 +5,7 @@
 #include "GLTextureWork.h"
 #include "GLBaceLightWork.h"
 #include "GLMaterialsWork.h"
+#include "GLLightingMapWork.h"
 
 enum Names
 {
@@ -13,6 +14,7 @@ enum Names
 	texture,
 	baceLight,
 	materials,
+	lightingMap,
 };
 
 
@@ -47,6 +49,11 @@ GLWork *workCreater(int name)
 		vertex = "glsl//vertex_Color_light.vs";
 		fragment = "glsl//fragment_Color_light.fra";
 		return new GLMaterialsWork(vertex, fragment, cameraPos);
+		break;
+	case lightingMap:
+		vertex = "glsl//vertex_Color_light.vs";
+		fragment = "glsl//fragment_Color_light.fra";
+		return new GLLightingMapWork(vertex, fragment, cameraPos);
 		break;
 	default:
 		return NULL;

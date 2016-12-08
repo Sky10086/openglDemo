@@ -60,6 +60,9 @@
     <ClInclude Include="GLMaterialsWork.h">
       <Filter>源文件</Filter>
     </ClInclude>
+    <ClInclude Include="GLLightingMapWork.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

@@ -59,7 +59,7 @@ int main()
 {
 	//stratProcess(toColor);
 	//testAnswer();
-	GLWork *curWork = workCreater(materials);
+	GLWork *curWork = workCreater(lightingMap);
 	curWork->onDraw(thirdDraw);
 	return 0;
 }

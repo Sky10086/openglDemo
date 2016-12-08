@@ -83,6 +83,7 @@
     <ClInclude Include="testAnswer.h" />
     <ClInclude Include="GLTextureWork.h" />
     <ClInclude Include="transformations.h" />
+    <ClInclude Include="GLLightingMapWork.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
