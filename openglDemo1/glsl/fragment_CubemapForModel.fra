@@ -1,0 +1,17 @@
+#version 330 core
+precision mediump float;
+//纹理坐标
+uniform vec3 cameraPos;
+uniform samplerCube skybox;
+varying vec3 Normal;
+varying vec3 Position;
+
+
+void main()
+{
+	float ratio = 1.00 / 1.52;
+    vec3 I = normalize(Position - cameraPos);
+    vec3 R = refract(I, normalize(Normal), ratio);
+    gl_FragColor = vec4(textureCube(skybox,R));
+	//gl_FragColor = vec4(1.0,0.0,0.0,1.0);
+}

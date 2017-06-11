@@ -1,0 +1,16 @@
+#version 330 core
+precision mediump float;
+
+uniform vec3 cameraPos;
+uniform samplerCube skybox;
+varying vec3 Normal;
+varying vec3 Position;
+
+void main()
+{
+	vec3 I = normalize(Position - cameraPos);
+    vec3 R = reflect(I, normalize(Normal));
+    gl_FragColor = vec4(textureCube(skybox,R));
+	//gl_FragColor = vec4(1.0,0.0,0.0,1.0);
+	
+}

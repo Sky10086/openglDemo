@@ -1,0 +1,29 @@
+#version 330 core
+precision mediump float;
+//纹理坐标
+uniform vec3 cameraPos;
+uniform sampler2D texture_diffuse1;
+uniform sampler2D texture_reflection1;
+uniform samplerCube skybox;
+
+varying vec3 Normal;
+varying vec3 Position;
+varying vec2 TexCoords;
+
+
+void main()
+{
+  // Diffuse
+    vec4 diffuse_color = texture2D(texture_diffuse1, TexCoords);
+	
+    vec3 I = normalize(Position - cameraPos);
+    vec3 R = reflect(I, normalize(Normal));
+	
+	float reflect_intensity = texture2D(texture_reflection1, TexCoords).r;
+    vec4 reflect_color;
+    if(reflect_intensity > 0.1) // Only sample reflections when above a certain treshold
+        reflect_color = textureCube(skybox, R) * reflect_intensity;
+		
+    gl_FragColor = diffuse_color + reflect_color;
+	//gl_FragColor = vec4(1.0,0.0,0.0,1.0);
+}

@@ -1,0 +1,11 @@
+#version 330 core
+precision mediump float;
+//纹理坐标
+varying vec2 TexCoords;
+
+uniform sampler2D texture_diffuse1;
+void main()
+{
+    gl_FragColor = vec4(texture2D(texture_diffuse1,TexCoords));
+	//gl_FragColor = vec4(1.0,0.0,0.0,1.0);
+}

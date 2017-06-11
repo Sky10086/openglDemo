@@ -39,8 +39,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>G:\VisualStudio2013Projects\openglDemo1\openglLIB;G:\VisualStudio2013Projects\openglDemo1\openglLIB\SOIL\src;G:\VisualStudio2013Projects\openglDemo1\openglLIB\glfw-3.2.1\include;G:\VisualStudio2013Projects\openglDemo1\openglLIB\glew-2.0.0\include;$(IncludePath)</IncludePath>
-    <LibraryPath>G:\VisualStudio2013Projects\openglDemo1\openglLIB\glfw-3.2.1\lib_v13;G:\VisualStudio2013Projects\openglDemo1\openglLIB\SOIL\lib;G:\VisualStudio2013Projects\openglDemo1\openglLIB\glew-2.0.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>G:\VisualStudio2013Projects\openglDemo1\openglLIB\assimp-3.3.1\include\;D:\newGit\openglDemo\openglLIB\SOIL\src;D:\newGit\openglDemo\openglLIB\glm\gtx;D:\newGit\openglDemo\openglLIB\glfw-3.2.1\include\GLFW;D:\newGit\openglDemo\openglLIB\glew-2.0.0\include\GL;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\codeGit\openGL\openglLIB\assimp331build\code\Debug\;G:\VisualStudio2013Projects\openglDemo1\openglLIB\assimp331build\code\Debug;G:\VisualStudio2013Projects\openglDemo1\openglLIB\glfw-3.2.1\lib_v13;G:\VisualStudio2013Projects\openglDemo1\openglLIB\glew-2.0.0\lib\Release\Win32;G:\VisualStudio2013Projects\openglDemo1\openglLIB\SOIL\lib;D:\newGit\openglDemo\openglLIB\glfw-3.2.1\lib_v13;D:\newGit\openglDemo\openglLIB\SOIL\lib;D:\newGit\openglDemo\openglLIB\glew-2.0.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -50,7 +50,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;soil.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;soil.lib;assimp-vc120-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -72,12 +72,29 @@
     <ClInclude Include="CameraDefine.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="CoordinateSystems.h" />
+    <ClInclude Include="GLBaceLightWork.h" />
+    <ClInclude Include="GLBlendWork.h" />
+    <ClInclude Include="GLCubemapWork.h" />
+    <ClInclude Include="GLDepthtestWork.h" />
+    <ClInclude Include="GLDrawModelWork.h" />
+    <ClInclude Include="GLFaceCullWork.h" />
+    <ClInclude Include="GLFramebufferWork.h" />
+    <ClInclude Include="GLLightcastersWork.h" />
+    <ClInclude Include="GLMaterialsWork.h" />
+    <ClInclude Include="GLMultiLightWork.h" />
+    <ClInclude Include="GLStencilTestWork.h" />
+    <ClInclude Include="GLTestWork.h" />
+    <ClInclude Include="GLWork.h" />
+    <ClInclude Include="GLWorkFactory.h" />
     <ClInclude Include="helpCompute.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Model.h" />
     <ClInclude Include="shader.h" />
-    <ClInclude Include="shaders.h" />
+    <ClInclude Include="GLShaderWork.h" />
     <ClInclude Include="testAnswer.h" />
-    <ClInclude Include="texture.h" />
+    <ClInclude Include="GLTextureWork.h" />
     <ClInclude Include="transformations.h" />
+    <ClInclude Include="GLLightingMapWork.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

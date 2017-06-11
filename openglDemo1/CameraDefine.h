@@ -4,9 +4,9 @@
 #include <vector>
 
 // GL Includes
-#include <GL/glew.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+#include "../openglLIB/glew-2.0.0/include/GL/glew.h"
+#include "../openglLIB/glm/glm.hpp"
+#include "../openglLIB/glm/gtc/matrix_transform.hpp"
 
 /*****************************************************************************
 * @function name : 
